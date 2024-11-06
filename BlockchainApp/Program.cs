@@ -1,7 +1,5 @@
 ﻿using BlockchainApp.Code;
 using Newtonsoft.Json;
-using Newtonsoft.Json.Serialization;
-using System.Reflection;
 
 Console.WriteLine("Blockchain starting...");
 
