@@ -10,6 +10,7 @@ namespace BlockchainApp.Code
         public string Hash { get; set; } = string.Empty;
         public string Data { get; set; } = string.Empty;
         public string PreviousHash { get; set; } = string.Empty;
+        public string ReverseHashValue { get; set; } = string.Empty;
         public int Nonce { get; set; }
 
         internal Block(int index, DateTime timestamp, string data, string previousHash)
@@ -19,6 +20,7 @@ namespace BlockchainApp.Code
             Data = data;
             PreviousHash = previousHash;
             Hash = CalculateHash();
+            //ReverseHashValue = EcryCalculateHash(Hash);
         }
 
         internal string CalculateHash()
@@ -27,6 +29,16 @@ namespace BlockchainApp.Code
             byte[] inputBytes = Encoding.ASCII.GetBytes($"{Index}-{Timestamp}-{Data}-{PreviousHash}-{Nonce}");
             byte[] outputBytes = sha256.ComputeHash(inputBytes);
             return Convert.ToBase64String(outputBytes);
+        }
+        internal string EcryCalculateHash(string hash)
+        {
+            byte[] hashValue = Convert.FromBase64String(hash);
+            var returnValue = Encoding.ASCII.GetString(hashValue);
+            return returnValue;
+            //byte[] arr = sha256.ComputeHash(hashValue);
+            //byte[] inputBytes = Encoding.ASCII.GetBytes($"{Index}-{Timestamp}-{Data}-{PreviousHash}-{Nonce}");
+            //byte[] outputBytes = sha256.ComputeHash(inputBytes);
+            //return Convert.ToBase64String(outputBytes);
         }
 
         internal void MineBlock(int difficulty)

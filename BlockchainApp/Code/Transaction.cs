@@ -10,6 +10,7 @@ namespace BlockchainApp.Code
     {
         public Guid Id { get; set; }
         public Guid AccountId { get; set; }
+        //public string AccountId { get; set; } = default!;
         public DateTime TransactionDate { get; set; }
         public decimal TransactionAmount { get; set; }
         public string Memo { get; set; } = string.Empty;
